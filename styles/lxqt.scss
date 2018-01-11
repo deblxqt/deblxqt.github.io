@@ -1,0 +1,927 @@
+---
+---
+@charset "UTF-8";
+@import '@module', 'web', 'fonts/OpenSans';
+@if module(
+	$name: 'LXQT',
+	$version: 2.0,
+	$media: all,
+	$description: 'Styling specific to LXQT.',
+	$dependencies: ('Web', 'OpenSans')
+)
+{
+	// Do stuff once
+	
+	$col-lxqt-blue-light: #41A0CB !global;
+	$col-lxqt-blue: #0280B9 !global;
+	$col-lxqt-blue-dark: #02608B !global;
+	$col-lxqt-blue-black-light: #01405D !global;
+	$col-lxqt-blue-black: #013046 !global;
+	$col-lxqt-blue-black-dark: #01202F !global;
+	$col-lxqt-grey-light: #888 !global;
+	$col-lxqt-grey: #222 !global;
+	
+	$easing: cubic-bezier(.4,0,.2,1);
+	
+	$zoom: zoom !global;
+	$zoom-factor: 1.0 !global;
+	$zoom-factor-min: $zoom-factor !global;
+	$zoom-factor-max: auto !global;
+	$fixed-width: false !global;
+	$fixed-height: false !global;
+	$line-height: 1.5 !global;
+	$font-family: "Open Sans", Arial, Sans-Serif !global;
+	$font-weight: 300 !global;
+	$font-size: 1em !global;
+	$letter-spacing: 0 !global;
+	$color: $col-white !global;
+	$background-color: $col-lxqt-blue-black !global;
+	$link-color: $col-lxqt-blue-light !global;
+	$link-unvisited-color: $link-color !global;
+	$link-visited-color: $link-color !global;
+	$link-focus-color: $link-color !global;
+	$link-active-color: $link-color !global;
+	$focus-outline: transparent dotted 0 !global;
+	$target-outline: transparent dotted 0 !global;
+	$selected-color: lighten(invert($background-color), 10%) !global;
+	$selected-background-color: $color !global;
+	$use-rem: true;
+	
+	@include Web();
+	
+	// LXQt
+	
+	// Contexts
+	article,
+	aside,
+	section
+	{
+		padding: 1rem;
+	}
+	
+	// Wrappers
+	html
+	{
+		overflow: auto;
+		
+		background-image: radial-gradient(50% 50% at 50% 50%, $col-lxqt-blue-black 0, $col-lxqt-blue-black-dark 100%);
+		background-size: 100% 100%;
+		background-position: top left;
+		background-attachment: scroll;
+		
+		-webkit-tap-highlight-color: rgba(#000, 0);
+		-ms-overflow-style: scrollbar;
+	}
+	div.wrapper
+	{
+		margin: 0;
+	}
+	#wrapper
+	{
+		position: relative;
+		max-width: none;
+		min-height: 100%;
+	}
+	
+	// Headers
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+	{
+		font-weight: 200;
+		text-transform: capitalize;
+		color: #0192D3;
+	}
+	
+	// Intro
+	#intro
+	{
+		position: static;
+		
+		color: #FFF;
+		background-color: #0280B9;
+		box-shadow: 0 0 1em 0 rgba(#000,0.5);
+		
+		> #heading
+		{
+			float: left;
+			margin-right: 1em;
+			padding: 0.5em;
+			border-right: 0.25em solid #FFF;
+			
+			background-color: $col-lxqt-grey;
+			opacity: 1;
+			
+			> h1
+			{
+				margin: 0;
+				
+				> a,
+				> a > img
+				{
+					display: block;
+					width: auto;
+					max-height: 3em;
+					margin: auto;
+					font-size: 1rem;
+					
+					> span[itemprop="name"]
+					{
+						display: none;
+					}
+				}
+			}
+		}
+		> p.strapline
+		{
+			float: left;
+			height: 3em;
+			margin: 0;
+			padding: 0.5em;
+			
+			> strong
+			{
+				display: table;
+				height: 3em;
+				font-weight: 300;
+				
+				> span
+				{
+					display: table-cell;
+					vertical-align: middle;
+					text-shadow: rgba(#000, 0.75) 1px 1px 5px;
+				}
+			}
+		}
+		> p.button.action
+		{
+			display: block;
+			float: right;
+			height: 3em;
+			margin: 0;
+			padding: 0.5em;
+			
+			> button
+			{
+				width: 3em;
+				height: 3em;
+				margin: 0;
+				padding: 0;
+				border-width: 0;
+				
+				background-color: transparent;
+				outline-width: 0;
+				
+				&:active
+				{
+					background-color: rgba(#000, 0.2);
+				}
+			}
+			@media all and (min-width: 1070px)
+			{
+				display: none;
+			}
+		}
+		> #nav
+		{
+			display: none;
+			clear: both;
+			height: 3em;
+			margin: 0;
+			padding: 0.5em;
+			
+			background-color: $col-lxqt-blue-black-light;
+			
+			&[data-state="active"]
+			{
+				display: block;
+			}
+			> header
+			{
+				> hgroup
+				{
+					display: none;
+				}
+			}
+			> div.wrapper
+			{
+				display: table;
+				height: 3em;
+				margin: auto;
+				
+				> main
+				{
+					display: table-cell;
+					vertical-align: middle;
+					text-shadow: rgba(#000, 0.75) 1px 1px 5px;
+					
+					ul
+					{
+						display: block;
+						margin: 0;
+						padding: 0 0.5em;
+						
+						> li
+						{
+							display: inline-block;
+							margin: 0;
+							padding: 0 0.5em;
+							
+							> p
+							{
+								margin: 0;
+								padding: 0;
+								
+								text-indent: 0;
+								
+								&::before
+								{
+									content: none;
+									display: none;
+								}
+								> a
+								{
+									font-weight: 400;
+									
+									color: #FFF;
+								}
+							}
+						}
+					}
+				}
+			}
+			@media all and (min-width: 1070px)
+			{
+				display: block;
+				clear: none;
+				
+				background-color: $col-lxqt-blue;
+				
+				&[data-state="inert"]
+				{
+					display: block;
+				}
+			}
+		}
+	}
+	
+	// Unrelated important
+	#wrapper > #unrelimp
+	{
+		font-size: 0.875em;
+		
+		> aside
+		{
+			> header
+			{
+				> hgroup
+				{
+					display: none;
+				}
+			}
+		}
+		a[href]
+		{
+			font-weight: 400;
+			
+			color: $col-lxqt-blue;
+		}
+	}
+	
+	// Content
+	#wrapper > #content
+	{
+		
+		> article
+		{
+			margin: 0;
+			padding: 1rem;
+			
+			&.post,
+			article.post
+			{
+				> header,
+				> footer
+				{
+					overflow: hidden;
+					
+					> p
+					{
+						&.date,
+						&.author
+						&.meta
+						{
+							float: left;
+							
+							font-size: 0.875em;
+							
+							color: $col-lxqt-grey-light;
+						}
+					}
+				}
+			}
+			&#article-screenshots
+			{
+				> div.wrapper > main > ol
+				{
+					padding-left: 0;
+					overflow: hidden;
+					
+					> li
+					{
+						display: block;
+						float: left;
+						
+						> a
+						{
+							display: block;
+							width: ((($line-width-min - ($margin * 2)) / 1.5) - 0.5rem);
+							margin-right: 0.5rem;
+							
+							> figure
+							{
+								position: relative;
+								width: 100%;
+								height: ((($line-width-min - ($margin * 2)) / 1.5) * 0.625);
+								margin: 0 0 2.575rem 0;
+								overflow: visible;
+								
+								background-color: $col-lxqt-grey;
+								
+								> header
+								{
+									position: absolute;
+									bottom: -2.075rem;
+									left: 0;
+									right: 0;
+									height: 2.075rem;
+									padding: $padding;
+									border-radius: 0 0 0.5rem 0.5rem;
+									@include box-sizing(border-box);
+									
+									background-color: $col-lxqt-blue-black-light;
+									text-shadow: rgba(#000, 0.75) 1px 1px 5px;
+									
+									> hgroup > h1
+									{
+										margin: 0;
+										
+										font-size: 0.875em;
+										font-weight: 400;
+										
+										color: $col-white;
+									}
+								}
+								div.wrapper > main > img
+								{
+									display: block;
+									position: absolute;
+									top: 0;
+									left: 0;
+									right: 0;
+									bottom: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		// Related important
+		> #relimp
+		{
+			> aside
+			{
+				> header
+				{
+					> hgroup
+					{
+						display: none;
+					}
+				}
+			}
+		}
+		
+		// Related unimportant
+		> #relunimp
+		{
+			> aside
+			{
+				> header
+				{
+					> hgroup
+					{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	
+	// Unrelated unimportant
+	#wrapper > #unrelunimp
+	{
+		max-width: none;
+		padding: 0 1rem;
+		border-top: 1px solid lighten($col-lxqt-grey, 4);
+		
+		font-size: 0.875em;
+		
+		background-color: $col-lxqt-grey;
+		
+		> aside
+		{
+			margin: 0;
+			padding: 1rem 0;
+			border-top: 1px solid $col-lxqt-blue;
+			
+			&:first-child
+			{
+				border-top-width: 0;
+			}
+			&#aside-downloads
+			{
+				font-size: 1rem;
+				
+				ul > li > p
+				{
+					padding-left: 0;
+					text-indent: 0;
+					
+					&::before
+					{
+						content: none;
+						display: none;
+					}
+					> a[href]
+					{
+						display: inline-block;
+						
+						color: $col-white;
+						
+						> span.label
+						{
+							font-weight: 400;
+						}
+						> img
+						{
+							vertical-align: top;
+						}
+					}
+				}
+			}
+			&#aside-screenshots
+			{
+				> div.wrapper > main > ol
+				{
+					padding-left: 0;
+					
+					> li
+					{
+						display: block;
+						
+						> a
+						{
+							display: block;
+							width: (($line-width-min - 3rem) / 1);
+							margin: 0 auto;
+							
+							> figure
+							{
+								position: relative;
+								width: 100%;
+								height: ((($line-width-min - 3rem) / 1) * 0.625);
+								margin: 0 auto;
+								margin-bottom: 2.575rem;
+								overflow: visible;
+								
+								background-color: $col-lxqt-blue-black-dark;
+								
+								> header
+								{
+									position: absolute;
+									bottom: -2.075rem;
+									left: 0;
+									right: 0;
+									height: 2.075rem;
+									padding: $padding;
+									border-radius: 0 0 0.5rem 0.5rem;
+									@include box-sizing(border-box);
+									
+									background-color: $col-lxqt-blue-black-light;
+									text-shadow: rgba(#000, 0.75) 1px 1px 5px;
+									
+									> hgroup > h1
+									{
+										margin: 0;
+										
+										font-size: 0.875em;
+										font-weight: 400;
+										
+										color: $col-white;
+									}
+								}
+								div.wrapper > main > img
+								{
+									display: block;
+									position: absolute;
+									top: 0;
+									left: 0;
+									right: 0;
+									bottom: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+			> header
+			{
+				> hgroup
+				{
+					display: none;
+				}
+			}
+			> div.wrapper > main
+			{
+				> ul,
+				> ol,
+				> dl
+				{
+					padding-left: 0;
+				}
+				:last-child
+				{
+					margin-bottom: 0;
+				}
+			}
+		}
+		a[href]
+		{
+			font-weight: 400;
+			
+			color: $col-lxqt-blue;
+		}
+	}
+	
+	// Outro
+	#wrapper > #outro
+	{
+		max-width: none;
+		padding: 0 1rem;
+		
+		font-size: 0.75em;
+		
+		background-color: $col-lxqt-grey;
+		
+		> section
+		{
+			margin: 0;
+			padding: 1rem 0;
+			
+			+ section
+			{
+				border-top: 1px solid $col-lxqt-blue;
+			}
+			> header,
+			> div.wrapper
+			{
+				max-width: none;
+			}
+			> header > hgroup
+			{
+				display: none;
+			}
+			> div.wrapper > main
+			{
+				> ul,
+				> ol,
+				> dl
+				{
+					padding-left: 0;
+				}
+				> ul,
+				> ol,
+				> dl > dd
+				{
+					margin-left: 0;
+				}
+				> p.license
+				{
+					font-size: inherit;
+				}
+				:last-child
+				{
+					margin-bottom: 0;
+				}
+			}
+		}
+		a[href]
+		{
+			font-weight: 400;
+			
+			color: $col-lxqt-blue;
+		}
+	}
+	
+	// Preview
+	#article-home_preview
+	{
+		position: relative;
+		padding-top: 56.25%;
+		padding-left: 0;
+		margin-bottom: 2.25rem;
+		background-color: #111;
+		
+		> li
+		{
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			z-index: 1;
+			
+			opacity: 1;
+			
+			@include transition(opacity 1s $easing);
+			
+			&[data-state="inert"]
+			{
+				display: block;
+				
+				opacity: 0;
+				
+				@include transition(opacity 1s $easing);
+				
+				pointer-events: none;
+			}
+			a
+			{
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				margin: auto;
+			}
+			figure
+			{
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				margin: auto;
+				overflow: visible;
+				
+				background-color: $col-lxqt-grey;
+				
+				pointer-events: none;	// temp
+				
+				/*
+				&:hover::before
+				{
+					content: "+";
+					display: block;
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					right: 0;
+					left: 0;
+					width: 1.25em;
+					height: 1.25em;
+					margin: auto;
+					border-radius: 0.25em;
+					z-index: 5;
+					font-size: 4em;
+					font-weight: 800;
+					line-height: 1.25em;
+					text-align: center;
+					color: #FFF;
+					background-color: #111;
+					opacity: 0.5;
+				}
+				&[data-state="active"]
+				{
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					width: auto;
+					height: auto;
+					
+					background-color: rgba(#000, 0.65);
+					
+					&:hover::before
+					{
+						content: "−";
+					}
+				}
+				*/
+				> header
+				{
+					position: absolute;
+					bottom: -2.25rem;
+					left: 0;
+					right: 0;
+					height: 2.25rem;
+					padding: $padding;
+					@include box-sizing(border-box);
+					z-index: 1;
+					
+					background-color: $col-lxqt-blue-black-light;
+					text-shadow: rgba(#000, 0.75) 1px 1px 5px;
+					
+					> hgroup > h1
+					{
+						margin: 0;
+						
+						font-size: 1em;
+						font-weight: 400;
+						
+						color: $col-white;
+					}
+				}
+				div.wrapper > main > img
+				{
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+					margin: auto;
+				}
+			}
+		}
+	}
+	
+	// Links
+	a[href]:not(:disabled),
+	a[href]:not(:disabled):visited,
+	a[href]:not(:disabled):focus,
+	a[href]:not(:disabled):hover,
+	a[href]:not(:disabled):focus:hover,
+	a[href]:not(:disabled):active
+	{
+		font-weight: 400;
+		text-decoration: none;
+		
+		background-color: transparent;
+		outline-width: 0;
+	}
+	
+	a[href]:not(:disabled):focus,
+	a[href]:not(:disabled):hover
+	{
+		text-decoration: underline;
+	}
+	
+	// Responsive columns
+	@media all and (orientation: portrait)
+	{
+		
+	}
+	@media all and (min-width: 42rem)
+	{
+		body:not([data-columns="0.5"]) #wrapper > #unrelimp > aside,
+		body:not([data-columns="0.5"]) #wrapper > #unrelunimp > aside
+		{
+			float: left;
+			position: relative;
+			width: 50%;
+			padding: 1rem 0 1rem 1rem;
+			border-top-width: 0;
+			@include box-sizing(border-box);
+		}
+		body:not([data-columns="0.5"]) #wrapper > #unrelimp > aside:nth-child(odd),
+		body:not([data-columns="0.5"]) #wrapper > #unrelunimp > aside:nth-child(odd)
+		{
+			padding-left: 0;
+			padding-right: 1rem;
+			
+			text-align: right;
+		}
+		body:not([data-columns="0.5"]) #wrapper > #unrelimp > aside:nth-child(odd)::after,
+		body:not([data-columns="0.5"]) #wrapper > #unrelunimp > aside:nth-child(odd)::after
+		{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0.75rem;
+			right: 0;
+			bottom: 0.75rem;
+			width: 0;
+			border-right: 1px solid $col-lxqt-blue;
+		}
+		body:not([data-columns="0.5"]) #wrapper > #outro
+		{
+			text-align: center;
+		}
+	}
+	@media all and (min-width: 65rem)
+	{
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper::after
+		{
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 22rem;
+			border: 1px solid rgba(lighten($col-lxqt-grey, 4), 0.5);
+			border-top-width: 0;
+			border-bottom: 1px solid rgba(darken($col-lxqt-grey, 3), 0.5);
+			border-radius: 0 0 $margin $margin;
+			z-index: -1;
+			
+			background-color: rgba($col-lxqt-grey, 0.5);
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelimp,
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelunimp,
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #outro
+		{
+			border-top-width: 0;
+			
+			background-color: transparent;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelimp > aside,
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelunimp > aside
+		{
+			float: none;
+			width: auto;
+			padding: 1rem 0;
+			border-top-width: 1px;
+			@include box-sizing(border-box);
+			
+			text-align: right;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelimp > aside:first-child,
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelunimp > aside:first-child
+		{
+			border-top-width: 0px;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelimp > aside:nth-child(odd)::after,
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #unrelunimp > aside:nth-child(odd)::after
+		{
+			content: none;
+			display: none;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]) #wrapper > #outro
+		{
+			text-align: right;
+		}
+	}
+	@media all and (min-width: 85rem)
+	{
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"]) #wrapper::after
+		{
+			width: 42rem;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelimp > aside,
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelunimp > aside
+		{
+			float: left;
+			position: relative;
+			width: 50%;
+			padding: 1rem 0 1rem 1rem;
+			border-top-width: 0;
+			@include box-sizing(border-box);
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelimp > aside:nth-child(odd)::after,
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelunimp > aside:nth-child(odd)::after
+		{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0.75rem;
+			right: 0;
+			bottom: 0.75rem;
+			width: 0;
+			border-right: 1px solid $col-lxqt-blue;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelimp > aside:nth-child(odd),
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelunimp > aside:nth-child(odd)
+		{
+			padding-left: 0;
+			padding-right: 1rem;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelimp > aside:nth-child(even),
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"])  #wrapper > #unrelunimp > aside:nth-child(even)
+		{
+			text-align: left;
+		}
+		body:not([data-columns="0.5"])[data-columns]:not([data-columns="1"]):not([data-columns="1.5"]) #wrapper > #outro
+		{
+			text-align: center;
+		}
+	}
+}

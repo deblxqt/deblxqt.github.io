@@ -1,0 +1,22 @@
+---
+layout: page
+slug: home
+---
+{% for post in site.posts limit:5 %}
+	{% if post.promoted %}
+		<article id="article-{{ post.slug }}" class="post">
+			<header>
+				<hgroup>
+					<h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+				</hgroup>
+			</header>
+			<div class="wrapper">
+				<main>
+					{{ post.excerpt }}
+                                        <a href="{{ post.url }}">Read more...</a>
+				</main>
+				<footer>{% if post.meta %}<p class="meta">{{ post.meta }}</p>{% endif %}</footer>
+			</div>
+		</article>
+	{% endif %}
+{% endfor %}
