@@ -1,0 +1,22 @@
+---
+layout: page
+title: packages
+slug: packages
+---
+{% for post in site.news %}
+<article id="article-{{ post.slug }}" class="post">
+	<header>
+		<hgroup>
+			<h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+		</hgroup>
+		<p class="date"><time datetime="{{ post.date | date: '%F %R' }}">{{ post.date | date: '%A, %-d %B, %Y' }}</time></p>
+		{% if post.author %}<p class="author">{{ post.author }}</p>{% endif %}
+	</header>
+	<div class="wrapper">
+		<main>
+			{{ post.excerpt }}
+		</main>
+		<footer>{% if post.meta %}<p>{{ post.meta }}</p>{% endif %}</footer>
+	</div>
+</article>
+{% endfor %}
